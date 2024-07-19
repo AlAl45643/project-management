@@ -68,9 +68,6 @@
         <form id="effortForm">
             <button type="button" class="button back" onclick="goBack()">Back</button>
             <br>
-            <label for="requirement">Requirement:</label>
-            <input type="text" id="requirement">
-            <br>
             <label for="reqAnalysis">Effort Spent on Requirements Analysis (hours):</label>
             <input type="number" id="reqAnalysis">
             <br>
@@ -151,7 +148,6 @@
 
         function logEffort() {
             const effort = {
-                requirement: document.getElementById('requirement').value,
                 reqAnalysis: parseInt(document.getElementById('reqAnalysis').value) || 0,
                 designing: parseInt(document.getElementById('designing').value) || 0,
                 coding: parseInt(document.getElementById('coding').value) || 0,
@@ -179,7 +175,6 @@
             project.effortLog.forEach((effort, index) => {
                 effortSummaryDiv.innerHTML += `
                     <h4>Effort ${index + 1}</h4>
-                    <p>Requirement: ${effort.requirement}</p>
                     <p>Requirements Analysis: ${effort.reqAnalysis} hours</p>
                     <p>Designing: ${effort.designing} hours</p>
                     <p>Coding: ${effort.coding} hours</p>
