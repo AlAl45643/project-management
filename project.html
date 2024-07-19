@@ -13,6 +13,8 @@
         .button { padding: 10px 20px; margin: 10px; }
         .back { background-color: lightgray; }
         .next { background-color: blue; color: white; }
+        .complete { background-color: green; color: white; }
+        .home { background-color: lightgray; }
     </style>
 </head>
 <body>
@@ -28,7 +30,7 @@
     <div class="section hidden" id="generalProjectInformation">
         <h2>Enter High Level Project Description</h2>
         <form id="generalProjectForm">
-            <button type="button" class="button back" onclick="backToMenu()">Back</button>
+            <button type="button" class="button home" onclick="backToMenu()">Home</button>
             <br>
             <label for="description">Project Description:</label>
             <textarea id="description"></textarea>
@@ -49,7 +51,7 @@
     <div class="section hidden" id="projectRequirements">
         <h2>Enter Project Requirements</h2>
         <form id="requirementsForm">
-            <button type="button" class="button back" onclick="backToMenu()">Back</button>
+            <button type="button" class="button back" onclick="goBack()">Back</button>
             <br>
             <label for="functionalRequirements">Functional Requirements (comma-separated):</label>
             <textarea id="functionalRequirements"></textarea>
@@ -64,7 +66,7 @@
     <div class="section hidden" id="logEffort">
         <h2>Log Effort</h2>
         <form id="effortForm">
-            <button type="button" class="button back" onclick="backToMenu()">Back</button>
+            <button type="button" class="button back" onclick="goBack()">Back</button>
             <br>
             <label for="requirement">Requirement:</label>
             <input type="text" id="requirement">
@@ -91,7 +93,8 @@
     <div class="section hidden" id="viewEffortSummary">
         <h2>Effort Summary</h2>
         <div id="effortSummary"></div>
-        <button type="button" class="button back" onclick="backToMenu()">Back</button>
+        <button type="button" class="button back" onclick="goBack()">Back</button>
+        <button type="button" class="button complete" onclick="completeProject()">Complete</button>
     </div>
 </div>
 
@@ -106,13 +109,27 @@
             effortLog: []
         };
 
+        const historyStack = [];
+
         function showSection(sectionId) {
+            historyStack.push(sectionId);
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.add('hidden'));
             document.getElementById(sectionId).classList.remove('hidden');
         }
 
+        function goBack() {
+            if (historyStack.length > 1) {
+                historyStack.pop();
+                const previousSectionId = historyStack[historyStack.length - 1];
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => section.classList.add('hidden'));
+                document.getElementById(previousSectionId).classList.remove('hidden');
+            }
+        }
+
         function backToMenu() {
+            historyStack.length = 0;
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => section.classList.add('hidden'));
             document.getElementById('menu').classList.remove('hidden');
@@ -172,6 +189,11 @@
                 `;
             });
         }
-    </script>
+
+        function completeProject() {
+            alert('Created by Donye Richardson, Ali Ali and Zarin Tanisa');
+            window.location.reload();
+}
+       </script>
 </body>
 </html>
