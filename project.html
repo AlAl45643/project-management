@@ -1,181 +1,177 @@
 <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Project Management System</title>
-            <style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management System</title>
+    <style>
         body { font-family: Arial, sans-serif; }
         .container { width: 80%; margin: 0 auto; }
         .section { margin-top: 20px; }
         .hidden { display: none; }
         textarea { width: 100%; height: 100px; }
+        .button { padding: 10px 20px; margin: 10px; }
+        .back { background-color: lightgray; }
+        .next { background-color: blue; color: white; }
     </style>
-        </head>
-        <body>
-        <div class="container">
-            <h1>Project Management System</h1>
-            <div class="section" id="menu">
-                <button onclick="showSection('generalProjectInformation')">Enter High Level Project Description</button>
-                <button onclick="showSection('projectRequirements')">Enter Project Requirements</button>
-                <button onclick="showSection('logEffort')">Log Effort</button>
-                <button onclick="showSection('viewEffortSummary')">View Effort Summary</button>
-            </div>
+</head>
+<body>
+<div class="container">
+    <h1>Project Management System</h1>
+    <div class="section" id="menu">
+        <button onclick="showSection('generalProjectInformation')">Enter High Level Project Description</button>
+        <button onclick="showSection('projectRequirements')">Enter Project Requirements</button>
+        <button onclick="showSection('logEffort')">Log Effort</button>
+        <button onclick="showSection('viewEffortSummary'); viewEffortSummary();">View Effort Summary</button>
+    </div>
 
-            <div class="section hidden" id="generalProjectInformation">
-                <h2>Enter High Level Project Description</h2>
-                <form id="generalProjectForm">
-                    <button type="button" onclick="backToMenu()">Back</button>
-                    <br>
-                    <label for="description">Project Description:</label>
-                    <textarea id="description"></textarea>
-                    <br>
-                    <label for="manager">Project Manager Name:</label>
-                    <input type="text" id="manager">
-                    <br>
-                    <label for="teamMembers">Team Members (comma-separated):</label>
-                    <input type="text" id="teamMembers">
-                    <br>
-                    <label for="risks">Risks (comma-separated):</label>
-                    <input type="text" id="risks">
-                    <br>
-                    <button type="button" onclick="saveGeneralProjectInformation()">Save</button>
-                </form>
-            </div>
+    <div class="section hidden" id="generalProjectInformation">
+        <h2>Enter High Level Project Description</h2>
+        <form id="generalProjectForm">
+            <button type="button" class="button back" onclick="backToMenu()">Back</button>
+            <br>
+            <label for="description">Project Description:</label>
+            <textarea id="description"></textarea>
+            <br>
+            <label for="manager">Project Manager Name:</label>
+            <input type="text" id="manager">
+            <br>
+            <label for="teamMembers">Team Members (comma-separated):</label>
+            <input type="text" id="teamMembers">
+            <br>
+            <label for="risks">Risks (comma-separated):</label>
+            <input type="text" id="risks">
+            <br>
+            <button type="button" class="button next" onclick="saveGeneralProjectInformation(); showSection('projectRequirements');">Next</button>
+        </form>
+    </div>
 
-            <div class="section hidden" id="projectRequirements">
-                <h2>Enter Project Requirements</h2>
-                <form id="requirementsForm">
-                    <button type="button" onclick="backToMenu()">Back</button>
-                    <br>
-                    <label for="functionalRequirements">Functional Requirements (comma-separated):</label>
-                    <textarea id="functionalRequirements"></textarea>
-                    <br>
-                    <label for="nonFunctionalRequirements">Non-Functional Requirements (comma-separated):</label>
-                    <textarea id="nonFunctionalRequirements"></textarea>
-                    <br>
-                    <button type="button" onclick="saveProjectRequirements()">Save</button>
-                </form>
-            </div>
+    <div class="section hidden" id="projectRequirements">
+        <h2>Enter Project Requirements</h2>
+        <form id="requirementsForm">
+            <button type="button" class="button back" onclick="backToMenu()">Back</button>
+            <br>
+            <label for="functionalRequirements">Functional Requirements (comma-separated):</label>
+            <textarea id="functionalRequirements"></textarea>
+            <br>
+            <label for="nonFunctionalRequirements">Non-Functional Requirements (comma-separated):</label>
+            <textarea id="nonFunctionalRequirements"></textarea>
+            <br>
+            <button type="button" class="button next" onclick="saveProjectRequirements(); showSection('logEffort');">Next</button>
+        </form>
+    </div>
 
-            <div class="section hidden" id="logEffort">
-                <h2>Log Effort</h2>
-                <form id="effortForm">
-                    <button type="button" onclick="backToMenu()">Back</button>
-                    <br>
-                    <label for="requirement">Requirement:</label>
-                    <input type="text" id="requirement">
-                    <br>
-                    <label for="reqAnalysis">Effort Spent on Requirements Analysis (hours):</label>
-                    <input type="number" id="reqAnalysis">
-                    <br>
-                    <label for="designing">Effort Spent on Designing (hours):</label>
-                    <input type="number" id="designing">
-                    <br>
-                    <label for="coding">Effort Spent on Coding (hours):</label>
-                    <input type="number" id="coding">
-                    <br>
-                    <label for="testing">Effort Spent on Testing (hours):</label>
-                    <input type="number" id="testing">
-                    <br>
-                    <label for="projectManagement">Effort Spent on Project Management (hours):</label>
-                    <input type="number" id="projectManagement">
-                    <br>
-                    <button type="button" onclick="logEffort()">Log Effort</button>
-                </form>
-            </div>
+    <div class="section hidden" id="logEffort">
+        <h2>Log Effort</h2>
+        <form id="effortForm">
+            <button type="button" class="button back" onclick="backToMenu()">Back</button>
+            <br>
+            <label for="requirement">Requirement:</label>
+            <input type="text" id="requirement">
+            <br>
+            <label for="reqAnalysis">Effort Spent on Requirements Analysis (hours):</label>
+            <input type="number" id="reqAnalysis">
+            <br>
+            <label for="designing">Effort Spent on Designing (hours):</label>
+            <input type="number" id="designing">
+            <br>
+            <label for="coding">Effort Spent on Coding (hours):</label>
+            <input type="number" id="coding">
+            <br>
+            <label for="testing">Effort Spent on Testing (hours):</label>
+            <input type="number" id="testing">
+            <br>
+            <label for="projectManagement">Effort Spent on Project Management (hours):</label>
+            <input type="number" id="projectManagement">
+            <br>
+            <button type="button" class="button next" onclick="logEffort(); showSection('viewEffortSummary'); viewEffortSummary();">Next</button>
+        </form>
+    </div>
 
-            <div class="section hidden" id="viewEffortSummary">
-                <h2>Effort Summary</h2>
-                <div id="effortSummary"></div>
-                <button type="button" onclick="backToMenu()">Back</button>
-            </div>
-        </div>
+    <div class="section hidden" id="viewEffortSummary">
+        <h2>Effort Summary</h2>
+        <div id="effortSummary"></div>
+        <button type="button" class="button back" onclick="backToMenu()">Back</button>
+    </div>
+</div>
 
-        <script>
-    const project = {
-        description: '',
-        projectManager: '',
-        teamMembers: [],
-        risks: [],
-        functionalRequirements: [],
-        nonFunctionalRequirements: [],
-        effortLog: []
-    };
-
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.classList.add('hidden'));
-        document.getElementById(sectionId).classList.remove('hidden');
-
-        // Clear form fields when switching sections
-        if (sectionId === 'generalProjectInformation') {
-            document.getElementById('description').value = '';
-            document.getElementById('manager').value = '';
-            document.getElementById('teamMembers').value = '';
-            document.getElementById('risks').value = '';
-        } else if (sectionId === 'projectRequirements') {
-            document.getElementById('functionalRequirements').value = '';
-            document.getElementById('nonFunctionalRequirements').value = '';
-        } else if (sectionId === 'logEffort') {
-            document.getElementById('requirement').value = '';
-            document.getElementById('reqAnalysis').value = '';
-            document.getElementById('designing').value = '';
-            document.getElementById('coding').value = '';
-            document.getElementById('testing').value = '';
-            document.getElementById('projectManagement').value = '';
-        }
-    }
-
-    function backToMenu() {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.classList.add('hidden'));
-        document.getElementById('menu').classList.remove('hidden');
-    }
-
-    function saveGeneralProjectInformation() {
-        project.description = document.getElementById('description').value;
-        project.projectManager = document.getElementById('manager').value;
-        project.teamMembers = document.getElementById('teamMembers').value.split(',');
-        project.risks = document.getElementById('risks').value.split(',');
-        alert('General project information saved.');
-    }
-
-    function saveProjectRequirements() {
-        project.functionalRequirements = document.getElementById('functionalRequirements').value.split(',');
-        project.nonFunctionalRequirements = document.getElementById('nonFunctionalRequirements').value.split(',');
-        alert('Project requirements saved.');
-    }
-
-    function logEffort() {
-        const effort = {
-            requirement: document.getElementById('requirement').value,
-            reqAnalysis: parseInt(document.getElementById('reqAnalysis').value),
-            designing: parseInt(document.getElementById('designing').value),
-            coding: parseInt(document.getElementById('coding').value),
-            testing: parseInt(document.getElementById('testing').value),
-            projectManagement: parseInt(document.getElementById('projectManagement').value)
+<script>
+        const project = {
+            description: '',
+            projectManager: '',
+            teamMembers: [],
+            risks: [],
+            functionalRequirements: [],
+            nonFunctionalRequirements: [],
+            effortLog: []
         };
-        project.effortLog.push(effort);
-        alert('Effort logged.');
-    }
 
-    function viewEffortSummary() {
-        const effortSummaryDiv = document.getElementById('effortSummary');
-        effortSummaryDiv.innerHTML = '';
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
 
+        function backToMenu() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.add('hidden'));
+            document.getElementById('menu').classList.remove('hidden');
+        }
 
-        project.effortLog.forEach(effort => {
-            effortSummaryDiv.innerHTML += `
-                <h3>Requirement: ${effort.requirement}</h3>
-                <p>Requirements Analysis: ${effort.reqAnalysis} hours</p>
-                <p>Designing: ${effort.designing} hours</p>
-                <p>Coding: ${effort.coding} hours</p>
-                <p>Testing: ${effort.testing} hours</p>
-                <p>Project Management: ${effort.projectManagement} hours</p>
+        function saveGeneralProjectInformation() {
+            project.description = document.getElementById('description').value;
+            project.projectManager = document.getElementById('manager').value;
+            project.teamMembers = document.getElementById('teamMembers').value.split(',').map(item => item.trim());
+            project.risks = document.getElementById('risks').value.split(',').map(item => item.trim());
+            alert('General project information saved.');
+        }
+
+        function saveProjectRequirements() {
+            project.functionalRequirements = document.getElementById('functionalRequirements').value.split(',').map(item => item.trim());
+            project.nonFunctionalRequirements = document.getElementById('nonFunctionalRequirements').value.split(',').map(item => item.trim());
+            alert('Project requirements saved.');
+        }
+
+        function logEffort() {
+            const effort = {
+                requirement: document.getElementById('requirement').value,
+                reqAnalysis: parseInt(document.getElementById('reqAnalysis').value) || 0,
+                designing: parseInt(document.getElementById('designing').value) || 0,
+                coding: parseInt(document.getElementById('coding').value) || 0,
+                testing: parseInt(document.getElementById('testing').value) || 0,
+                projectManagement: parseInt(document.getElementById('projectManagement').value) || 0
+            };
+            project.effortLog.push(effort);
+            alert('Effort logged.');
+        }
+
+        function viewEffortSummary() {
+            const effortSummaryDiv = document.getElementById('effortSummary');
+            effortSummaryDiv.innerHTML = `
+                <h3>High Level Project Description</h3>
+                <p>Description: ${project.description}</p>
+                <p>Project Manager: ${project.projectManager}</p>
+                <p>Team Members: ${project.teamMembers.join(', ')}</p>
+                <p>Risks: ${project.risks.join(', ')}</p>
+                <h3>Project Requirements</h3>
+                <p>Functional Requirements: ${project.functionalRequirements.join(', ')}</p>
+                <p>Non-Functional Requirements: ${project.nonFunctionalRequirements.join(', ')}</p>
+                <h3>Effort Log</h3>
             `;
-        });
-    }
-</script>
-        </body>
+
+            project.effortLog.forEach((effort, index) => {
+                effortSummaryDiv.innerHTML += `
+                    <h4>Effort ${index + 1}</h4>
+                    <p>Requirement: ${effort.requirement}</p>
+                    <p>Requirements Analysis: ${effort.reqAnalysis} hours</p>
+                    <p>Designing: ${effort.designing} hours</p>
+                    <p>Coding: ${effort.coding} hours</p>
+                    <p>Testing: ${effort.testing} hours</p>
+                    <p>Project Management: ${effort.projectManagement} hours</p>
+                    <hr>
+                `;
+            });
+        }
+    </script>
+</body>
 </html>
