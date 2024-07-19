@@ -31,4 +31,8 @@ To set up and run the Project Management System, follow these steps:
 4. Click "View Effort Summary" to see the summary of logged efforts.
 
 ## Project Structure
+3. Fill in the forms and click "Save" or "Log Effort" to save the data.
+4. Click "View Effort Summary" to see the summary of logged efforts.
+
+## Project Structure
 
