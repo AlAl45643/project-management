@@ -17,11 +17,11 @@ To set up and run the Project Management System, follow these steps:
     ```bash
     git clone https://github.com/AlAl45643/project-management.git
     ```
-2. Open the `index.html` file in a web browser.
+2. Open the `project.html` file in a web browser.
 
 ## Usage
 
-1. Open `index.html` in a web browser.
+1. Open `project.html` in a web browser.
 2. Use the buttons to navigate between sections:
    - **Enter High Level Project Description**
    - **Enter Project Requirements**
@@ -34,5 +34,4 @@ To set up and run the Project Management System, follow these steps:
 3. Fill in the forms and click "Save" or "Log Effort" to save the data.
 4. Click "View Effort Summary" to see the summary of logged efforts.
 
-## Project Structure
 
